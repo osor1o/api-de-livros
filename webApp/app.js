@@ -2,7 +2,7 @@
 (function () 
 {
     "use stric";
-    const url = 'http://localhost:8081';
+    const url = 'http://10.0.2.124:8081';
     var elems = document.querySelectorAll('.modal');
     var instancesModal = M.Modal.init(elems);
     var instanceModal = (elem) => M.Modal.getInstance(elem);

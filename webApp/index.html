@@ -69,47 +69,47 @@
                     <div class="row section">
                         <div class="input-field col s12">
                             <input id="addFirstName" type="text">
-                            <label for="addFirstName">First Name</label>
+                            <label for="addFirstName">First Name*</label>
                         </div>
                         <div class="input-field col s12">
                             <input id="addLastName" type="text">
-                            <label for="addLastName">Last Name</label>
+                            <label for="addLastName">Last Name*</label>
                         </div>
                         <div class="input-field col s12">
                             <input id="addTitle" type="text">
-                            <label for="addTitle">Title</label>
+                            <label for="addTitle">Title<*/label>
                         </div>
                         <div class="input-field col s12">
                             <textarea id="addDescription" class="materialize-textarea"></textarea>
                             <label for="addDescription">Description</label>
                         </div>
                         <div class="input-field col s12">
-                            <input id="addPrice" type="number">
-                            <label for="addPrice">Price</label>
+                            <input id="addPrice" type="number" step="0.01" min="0" max="2000">
+                            <label for="addPrice">Price*</label>
                         </div>
                         <div class="input-field col s12">
-                            <input id="addWidth" type="number">
-                            <label for="addWidth">Width (11-60cm)</label>
+                            <input id="addWidth" type="number" min="11" max="60">
+                            <label for="addWidth">Width (11-60cm)*</label>
                         </div>
                         <div class="input-field col s12">
-                            <input id="addHeight" type="number">
-                            <label for="addHeight">Height (10-100cm)</label>
+                            <input id="addHeight" type="number" min="10" max="100">
+                            <label for="addHeight">Height (10-100cm)*</label>
                         </div>
                         <div class="input-field col s12">
-                            <input id="addLength" type="number">
-                            <label for="addLength">Length (16-60cm)</label>
+                            <input id="addLength" type="number" min="16" max="60">
+                            <label for="addLength">Length (16-60cm)*</label>
                         </div>
                         <div class="input-field col s12">
-                            <input id="addWeight" type="number">
-                            <label for="addWeight">Weight (0.05-1kg)</label>
+                            <input id="addWeight" type="number" step="0.01" min="0" max="1">
+                            <label for="addWeight">Weight (0,05-1kg)*</label>
                         </div>
                         <div class="input-field col s12">
-                            <input id="addCellPhone" type="number" class="validate">
-                            <label for="addCellPhone">Cell Phone (10-11)</label>
+                            <input id="addCellPhone" type="tel" class="validate">
+                            <label for="addCellPhone">Cell Phone (10-11)*</label>
                         </div>
                         <div class="input-field col s12">
-                            <input id="addCep" type="number" class="validate">
-                            <label for="addCep">CEP (8)</label>
+                            <input id="addCep" type="tel" class="validate">
+                            <label for="addCep">CEP (8)*</label>
                         </div>
                     </div>
                 </form>
@@ -117,7 +117,7 @@
         </div>
         <div class="modal-footer">
             <a class="modal-close waves-effect waves-green btn-flat  blue-grey darken-2 white-text">Cancel</a>
-            <button id="addSubmit" class="waves-effect waves-green btn-flat blue white-text">Save</button>
+            <button type="button" id="addSubmit" class="waves-effect waves-green btn-flat blue white-text">Save</button>
         </div>
     </div>
     <div id="modalBook" class="modal modal-fixed-footer">
@@ -142,7 +142,7 @@
                                     <label for="inputCep">CEP</label>
                                 </div>
                                 <div class="input-field col s12">
-                                    <button id="calculateCep" class="waves-effect waves-green btn-flat  blue white-text">Calculate</button>
+                                    <button type="button" id="calculateCep" class="waves-effect waves-green btn-flat  blue white-text">Calculate</button>
                                 </div>
                                 <div id="alertCep" style="display: none" class="card-panel red lighten-1 white-text col s12">
                                     <b>calculate error :(</b>
