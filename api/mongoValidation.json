@@ -1,0 +1,58 @@
+{
+    "title": {
+      "$regex": "[a-z0-9áàâãéèêíïóôõöúçñ ]{1,35}",
+      "$options": ""
+    },
+    "$or": [
+      {
+        "description": {
+          "$regex": "[a-z0-9áàâãéèêíïóôõöúçñ ]{0,200}",
+          "$options": ""
+        }
+      },
+      {
+        "description": {
+          "$exists": false
+        }
+      },
+      {
+        "description": null
+      }
+    ],
+    "width": {
+      "$lte": 60,
+      "$gte": 5
+    },
+    "height": {
+      "$lte": 100,
+      "$gte": 10
+    },
+    "length": {
+      "$lte": 60,
+      "$gte": 5
+    },
+    "weight": {
+      "$lte": 1,
+      "$gte": 0.05
+    },
+    "firstName": {
+      "$regex": "[a-z0-9áàâãéèêíïóôõöúçñ ]{3,30}",
+      "$options": ""
+    },
+    "lastName": {
+      "$regex": "[a-z0-9áàâãéèêíïóôõöúçñ ]{3,30}",
+      "$options": ""
+    },
+    "cellPhone": {
+      "$regex": "[0-9]{11}",
+      "$options": ""
+    },
+    "cep": {
+      "$regex": "[0-9]{8}",
+      "$options": ""
+    },
+    "price": {
+      "$lte": 1000,
+      "$gte": 0.01
+    }
+  }

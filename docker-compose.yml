@@ -1,0 +1,29 @@
+#Books API
+version: '3.3'
+services:
+  #Api Laravel
+  api:
+    build:
+      context: .
+      dockerfile: phpConfig.dockerfile
+    container_name: booksApiPhp
+    ports:
+      - 8081:80
+    volumes:
+      - ./api:/var/www
+    depends_on:
+      - mongo
+  #MongoDB
+  mongo:
+    image: mongo
+    container_name: booksApiMongo
+    ports:
+      - 27017:27017
+  #App Front
+  app:
+    image: nginx
+    container_name: booksApiFront
+    ports:
+      - 8080:80
+    volumes:
+     - ./webApp:/usr/share/nginx/html
