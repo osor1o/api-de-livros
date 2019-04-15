@@ -21,7 +21,7 @@
   ],
   "width": {
     "$lte": 60,
-    "$gte": 5
+    "$gte": 11
   },
   "height": {
     "$lte": 100,
@@ -29,7 +29,7 @@
   },
   "length": {
     "$lte": 60,
-    "$gte": 5
+    "$gte": 16
   },
   "weight": {
     "$lte": 1,

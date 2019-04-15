@@ -22,7 +22,7 @@
 
     getId('update').onclick = function () {
         findAll();
-    }
+    };
 
     getId('addSubmit').onclick = function () {
         var parameters = {
@@ -37,10 +37,24 @@
             cellPhone: getId('addCellPhone').value,
             cep: getId('addCep').value,
             price: getId('addPrice').value
-        }
+        };
         insert(parameters);
-    }
+    };
     
+    getId('calculateCep').onclick = function () {
+        var parameters = {
+            tipo: "sedex,pac",
+            formato: "envelope",
+            cep_origem: getId('cep').innerText,
+            cep_destino: getId('inputCep').value,
+            peso: getId('weight').innerText,
+            comprimento: getId('length').innerText,
+            altura: getId('height').innerText,
+            largura: getId('width').innerText,
+        }
+        findCep(parameters);
+    };
+
     function findAll() {
         getId('books').innerHTML = null;
         getId('alert').style.display = 'none';
@@ -54,7 +68,7 @@
                     getId('alert').style.display = 'block';
                 } else {
                     data.forEach(book => getId('books').appendChild(createBook(book)));
-                }
+                };
             })
             .catch(function (error) {
                 getId('alert').innerHTML = "<b>Search error :(</b>";
@@ -70,6 +84,7 @@
         getId('addLoading').style.display = 'block';
         getId('addAlert').style.display = 'none';
         getId('addForm').style.display = 'none';
+        getId('addSubmit').disabled = true;
         
         axios.post(url, parameters)
             .then(function (response) {
@@ -95,25 +110,53 @@
             .then(function () {
                 getId('addLoading').style.display = 'none';
                 getId('addForm').style.display = 'block';
+                getId('addSubmit').disabled = false;
             });
     }
 
     function findCep(parameters) {
-        //
-    }
+        getId('loadingCep').style.display = "block";
+        getId('resultCep').style.display = "none";
+        getId('alertCep').style.display = "none";
+        getId('calculateCep').disabled = true;
+        axios.post(url+"/cep", parameters)
+            .then(function (response) {
+                var data = response.data;
+                data.forEach(function (data) {
+                    if(data.erro.codigo !== 0) throw data.erro.mensagem;
+                });
+                getId('sedexPrice').innerText = `R$${data[0].valor}`;
+                getId('sedexDays').innerText = `${data[0].prazo} days`;
+                getId('pacPrice').innerText = `R$${data[1].valor}`;
+                getId('pacDays').innerText = `${data[1].prazo} days`;
+                getId('resultCep').style.display = "block";
+                getId('alertCep').style.display = "none";
+            })
+            .catch(function (error) {
+                getId('alertCep').style.display = "block";
+            })
+            .then(function () {
+                getId('loadingCep').style.display = "none";
+                getId('calculateCep').disabled = false;
+            });
+    };
 
     function clickBook() {
         for(let i = 0; i < getClass('book').length; i++) {
             getClass('book')[i].onclick = function () {
+                getId('alertCep').style.display = 'none';
+                getId('resultCep').style.display = 'none';
                 var data = this.getElementsByTagName('input')[0].value;
                 data = JSON.parse(data);
                 getId('title').innerText = data.title;
                 getId('description').innerText = data.description;
                 getId('height').innerText = data.height;
                 getId('width').innerText = data.width;
+                getId('length').innerText = data.length;
                 getId('weight').innerText = data.weight;
                 getId('sellerName').innerText = `${data.firstName} ${data.lastName}`;
                 getId('cellPhone').innerText = data.cellPhone;
+                getId('cep').innerText = data.cep;
             }
         }
     }

@@ -89,19 +89,19 @@
                         </div>
                         <div class="input-field col s12">
                             <input id="addWidth" type="number">
-                            <label for="addWidth">Width (cm, max 60)</label>
+                            <label for="addWidth">Width (cm, 11-60)</label>
                         </div>
                         <div class="input-field col s12">
                             <input id="addHeight" type="number">
-                            <label for="addHeight">Height (cm, max 100)</label>
+                            <label for="addHeight">Height (cm, 10-100)</label>
                         </div>
                         <div class="input-field col s12">
                             <input id="addWeight" type="number">
-                            <label for="addWeight">Weight (kg, max 1)</label>
+                            <label for="addWeight">Weight (kg, 0.05-1)</label>
                         </div>
                         <div class="input-field col s12">
                             <input id="addLength" type="number">
-                            <label for="addLength">Length (cm, max 60)</label>
+                            <label for="addLength">Length (cm, 16-60)</label>
                         </div>
                         <div class="input-field col s12">
                             <input id="addCellPhone" type="number" class="validate">
@@ -117,7 +117,7 @@
         </div>
         <div class="modal-footer">
             <a class="modal-close waves-effect waves-green btn-flat  blue-grey darken-2 white-text">Cancel</a>
-            <a id="addSubmit" class="waves-effect waves-green btn-flat blue white-text">Save</a>
+            <button id="addSubmit" class="waves-effect waves-green btn-flat blue white-text">Save</button>
         </div>
     </div>
     <div id="modalBook" class="modal modal-fixed-footer">
@@ -130,19 +130,27 @@
                                     <p class="flow-text" id="title"></p>
                                     <p>Seller Name: <span id="sellerName"></span></p>
                                     <p>cellPhone: <span id="cellPhone"></span></p>
+                                    <p>CEP: <span id="cep"></span></p>
                                     <p>Height: <span id="height"></span></p>
                                     <p>Width: <span id="width"></span></p>
+                                    <p>length: <span id="length"></span></p>
                                     <p>Weight: <span id="weight"></span></p>
                                     <p>Description: <span id="description"></span></p>
                                 </div>
                                 <div class="input-field col s12">
-                                    <input id="cep" type="text" class="validate">
-                                    <label for="cep">CEP</label>
+                                    <input id="inputCep" type="text" class="validate">
+                                    <label for="inputCep">CEP</label>
                                 </div>
                                 <div class="input-field col s12">
-                                    <a class="modal-close waves-effect waves-green btn-flat  blue white-text">Calculate</a>
+                                    <button id="calculateCep" class="waves-effect waves-green btn-flat  blue white-text">Calculate</button>
                                 </div>
-                                <div class="input-field col s12">
+                                <div id="alertCep" style="display: none" class="card-panel red lighten-1 white-text col s12">
+                                    <b>calculate error :(</b>
+                                </div>
+                                <div id="loadingCep" style="display: none" class="col s12 center">
+                                    <img src="loading.gif">
+                                </div>
+                                <div id="resultCep" style="display: none" class="input-field col s12">
                                     <table class="responsive-table">
                                         <thead>
                                             <tr>
@@ -151,17 +159,16 @@
                                                 <th>delivery</th>
                                             </tr>
                                         </thead>
-                                    
                                         <tbody>
                                             <tr>
-                                            <td>SEDEX</td>
-                                            <td>R$55,00</td>
-                                            <td>11 Days</td>
+                                                <td>SEDEX</td>
+                                                <td id="sedexPrice">R$70,00</td>
+                                                <td id="sedexDays">7 Days</td>
                                             </tr>
                                             <tr>
-                                            <td>PAC</td>
-                                            <td>R$70,00</td>
-                                            <td>7 Days</td>
+                                                <td>PAC</td>
+                                                <td id="pacPrice">R$70,00</td>
+                                                <td id="pacDays">7 Days</td>
                                             </tr>
                                         </tbody>
                                     </table>                                
