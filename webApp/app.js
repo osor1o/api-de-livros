@@ -1,6 +1,7 @@
 
 (function () 
 {
+    "use stric";
     const url = 'http://localhost:8081';
     var elems = document.querySelectorAll('.modal');
     var instancesModal = M.Modal.init(elems);
@@ -47,7 +48,7 @@
         
         axios.get(url)
             .then(function (response) {
-                data = response.data;
+                var data = response.data;
                 if(data.length < 1) {
                     getId('alert').innerHTML = "<b>No books found :(</b>";
                     getId('alert').style.display = 'block';
@@ -104,9 +105,15 @@
     function clickBook() {
         for(let i = 0; i < getClass('book').length; i++) {
             getClass('book')[i].onclick = function () {
-                alert(1);
-                console.log(data);
-                // document.getElementById('book').getElementsByTagName('h4')[0].innerText = this.getElementsByTagName('span')[0].innerText;
+                var data = this.getElementsByTagName('input')[0].value;
+                data = JSON.parse(data);
+                getId('title').innerText = data.title;
+                getId('description').innerText = data.description;
+                getId('height').innerText = data.height;
+                getId('width').innerText = data.width;
+                getId('weight').innerText = data.weight;
+                getId('sellerName').innerText = `${data.firstName} ${data.lastName}`;
+                getId('cellPhone').innerText = data.cellPhone;
             }
         }
     }
@@ -114,6 +121,9 @@
     function createBook(data) {
         let book = createElement('div');
         book.className = "col s6 m3 book section";
+        let dataHidden = createElement('input');
+        dataHidden.type = "hidden";
+        dataHidden.value = JSON.stringify(data);
         let a = createElement('a');
         a.className = "modal-trigger";
         a.href = "#modalBook";
@@ -143,6 +153,7 @@
         card.appendChild(cardContent);
         a.appendChild(card);
         book.appendChild(a);
+        book.appendChild(dataHidden);
         return book;
     }
     
