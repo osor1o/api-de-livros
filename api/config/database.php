@@ -33,14 +33,20 @@ return [
 
     'connections' => [
 
-        'mongodb' => [
+        'mongodblocal' => [
             'driver'   => 'mongodb',
-            'host'     => env('MONGO_DB_HOST', 'localhost'),
-            'port'     => env('MONGO_DB_PORT', 27017),
-            'database' => env('MONGO_DB_DATABASE'),
-            'username' => env('MONGO_DB_USERNAME'),
-            'password' => env('MONGO_DB_PASSWORD'),
+            'host'     => env('MONGO_DB_LOCAL_HOST', 'localhost'),
+            'port'     => env('MONGO_DB_LOCAL_PORT', 27017),
+            'database' => env('MONGO_DB_LOCAL_DATABASE'),
+            'username' => env('MONGO_DB_LOCAL_USERNAME'),
+            'password' => env('MONGO_DB_LOCAL_PASSWORD'),
             'options'  => []
+        ],
+
+        'mongodb' => [
+            'driver' => 'mongodb',
+            'dsn'=> env('MONGO_DB_ATLAS_DSN'),
+            'database' => env('MONGO_DB_ATLAS_DATABASE'),  
         ],
 
         'sqlite' => [
